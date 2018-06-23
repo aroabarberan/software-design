@@ -16,21 +16,19 @@ class AddressController implements Controller
     public function response(): string
     {
         // TODO
-        $addresses = [];    
+        $addresses = [];
         $allAddresses = $this->service->readAddresses();
-        
+
         foreach ($allAddresses as $key => $address) {
             $addresses[] = [
-                'country' => $address->country->name,
-                'name' => $address->name,
-                'number' => $address->number
+                'streetName' => $address->streetName,
+                'streetNumber' => $address->streetNumber
             ];
         }
         $addresses = array_map(function ($a) {
             return implode(" - ", (array) $a);
         }, $addresses);
         return implode("<br>", $addresses);
-        // throw new \Exception("NOT IMPLEMENTED");
     }
 
 }

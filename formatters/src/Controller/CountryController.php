@@ -22,16 +22,13 @@ class CountryController implements Controller
         foreach ($allCountries as $key => $country) {
             $countries[] = [
                 'name' => $country->name,
-                'nameLanguage' => $country->laguage->name,
-                'numberOfSpeakers' => $country->laguage->numberOfSpeakers,
+                'area' => $country->area,
             ];
         }
         $countries = array_map(function ($c) {
             return implode(" - ", (array) $c);
         }, $countries);
         return implode("<br>", $countries);
-
-        // throw new \Exception("NOT IMPLEMENTED");
     }
 
 }

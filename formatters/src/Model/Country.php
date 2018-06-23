@@ -4,13 +4,12 @@ class Country
 {
     /** @var string */
     public $name;
-    /** @var Language */
-    public $language;
+    /** @var int */
+    public $area;
 
-    public function __construct(string $name, Language $language) {
+    public function __construct(string $name, int $area) {
         $this->name = $name;
-        $this->laguage = $language;
-
+        $this->area = $area;
     }
 
 }
