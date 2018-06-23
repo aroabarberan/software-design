@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello from PHP and Docker</title>
-</head>
-<body>
+<?php namespace App;
 
-<?= 'Hello from PHP and Docker' ?>
+require __DIR__ . '/../vendor/autoload.php';
 
-</body>
-</html>
+use App\Router\Router;
+use App\Exception;
+use App\Service;
+use App\Controller;
+use App\Model;
+
+// Declare services
+$languageService = new Service\LanguageService();
+$countryService = new Service\CountryService();
+$addressService = new Service\AddressService();
+
+// Declare controllers
+$languageController = new Controller\LanguageController($languageService);
+$countryController = new Controller\CountryController($countryService);
+$addressController = new Controller\AddressController($addressService);
+
+// Declare routes
+$router = new Router();
+$router->AddRoute($languageController, "/languages");
+$router->AddRoute($countryController, "/countries");
+$router->AddRoute($addressController, "/addresses");
+
+// Show response
+try {
+    $calledController = $router->Enroute($_SERVER['REQUEST_URI']);
+    echo $calledController->response();
+} catch (Exception\NotFound $ex) {
+    echo "ERROR 404. NOT FOUND.";
+}
