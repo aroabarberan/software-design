@@ -2,4 +2,5 @@ FROM php:7-apache
 
 LABEL maintainer="Ivan de la Beldad Fernandez"
 
-COPY src/ /var/www/html/
+RUN a2enmod rewrite && \
+    ln -s /var/www/html /var/www/src

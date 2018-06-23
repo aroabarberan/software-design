@@ -6,3 +6,6 @@ services:
       context: .
     ports:
     - 8080:80
+    volumes:
+    - ${PROJECT_ROOT}/src:/var/www/html
+    - ${PROJECT_ROOT}/vendor:/var/www/vendor
