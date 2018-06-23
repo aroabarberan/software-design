@@ -1,0 +1,16 @@
+{
+    "name": "aroabarberan/formatters",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aroa Barberan Poblete",
+            "email": "aroabarberan@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
