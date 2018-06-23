@@ -6,11 +6,15 @@ execute the following comand:
 composer dumpautoload
 ```
 
-Due to autoload system, everything must belong to a namespace (defined AT THE START
-of the file). It is configured so the folder *src* is called **App**. Every folder inside
-this one will be called **App\Subfolder**. For example, the *AddressController.php*
-is located at *src/Controller/AddressController.php*, so his **namespace** will be *App\Controller*, and you must import it using *App\Controller\AddressController*.
-If there are questions about it an alternative is check how it works looking at the files.
+### How it works
+
+- The *src* folder is called **App**.
+- Every folder inside this one will be called **App\NameOfTheFolder**.
+- Every class will be called **App\NameOfTheFolder\NameOfTheClass**.
+- If you create a class under *src/Test/MyTest.php*, you **MUST** start your script
+with **namespace App\Test**.
+- If you want to use that class **outside** the *src/Test/* folder, you **MUST** import
+the class using **use App\Test\MyTest**.
 
 ## Docker
 
