@@ -13,49 +13,52 @@ class CountryController implements Controller
         $this->service = $service;
     }
 
-    public function response(string $separator, string $design): string
+    public function response(string $separator = " ... ", string $design = "simbol"): string
     {
         $countries = $this->service->readCountries();
-
         $countries = array_map(function ($c) {
             return ['name' => $c->name, 'area' => $c->area];
         }, $countries);
-        $this->getDesign($design, $countries, $separator);
-        return "";
+        return $this->getDesign($design, $countries, $separator);
+        
     }
 
     private function getDesign(string $design, array $elements, string $separator)
     {
-        return [
-            'simbol' => $this->getSimbol($elements, $separator),
-            'table' => $this->getTable($elements),            
-        ];
+        switch ($design) {
+            case 'table':
+                return $this->getTable($elements);                                       
+            case 'simbol':
+                return $this->getSimbol($elements, $separator);
+            default:
+                return $this->getTable($elements);                
+        }
     }
 
     private function getTable(array $elements)
     {
-        ?>
+        $table = "
         <table border=0;>
             <tr>
                 <td>Name</td>
                 <td>Area</td>
-            </tr>
-            <?php foreach ($elements as $element): ?>
-                <tr>
-                    <td><?=$element['name']?></td>
-                    <td><?=$element['area']?></td>
-                </tr>
-            <?php endforeach;?>
-        </table>
-        <?php
-}
+            </tr>";
+            foreach ($elements as $element):
+                $table .= "<tr>
+                    <td> $element[name] </td>
+                    <td> $element[area] </td>
+                </tr>";
+            endforeach;
+        $table .= "</table>";
+        return $table;
+    }
 
-    private function getSimbol($elements, $separator)
+    private function getSimbol(array $elements, string $separator)
     {
         $elements = array_map(function ($c) use ($separator) {
-            return implode($separator, ['name' => $c->name, 'area' => $c->area]);
+            return implode($separator, $c);
         }, $elements);
 
-        return implode("<br>-", $elements);
+        return '- ' . implode("<br>- ", $elements);
     }
 }

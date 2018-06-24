@@ -27,7 +27,7 @@ $router->AddRoute($addressController, "/addresses");
 // Show response
 try {
     $calledController = $router->Enroute($_SERVER['REQUEST_URI']);
-    echo $calledController->response(" ... ", "simbol");
+    echo $calledController->response();
 } catch (Exception\NotFound $ex) {
     echo "ERROR 404. NOT FOUND.";
 }
