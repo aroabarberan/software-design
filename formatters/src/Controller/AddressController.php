@@ -13,11 +13,11 @@ class AddressController implements Controller
         $this->service = $service;
     }
 
-    public function response(): string
+    public function response(string $separator, string $design): string
     {
         $addresses = $this->service->readAddresses();
-        $addresses = array_map(function ($a) {
-            return implode(" - ", [
+        $addresses = array_map(function ($a) use ($separator) {
+            return implode($separator, [
                 'streetName' => $a->streetName,
                 'streetNumber' => $a->streetNumber,
             ]);
