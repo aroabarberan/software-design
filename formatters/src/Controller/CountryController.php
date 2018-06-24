@@ -15,18 +15,12 @@ class CountryController implements Controller
 
     public function response(): string
     {
-        // TODO
-        $countries = [];
-        $allCountries = $this->service->readCountries();
-
-        foreach ($allCountries as $key => $country) {
-            $countries[] = [
-                'name' => $country->name,
-                'area' => $country->area,
-            ];
-        }
+        $countries = $this->service->readCountries();
         $countries = array_map(function ($c) {
-            return implode(" - ", (array) $c);
+            return implode(" - ", [
+                'name' => $c->name,
+                'area' => $c->area,
+            ]);
         }, $countries);
         return implode("<br>", $countries);
     }

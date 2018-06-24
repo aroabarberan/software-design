@@ -15,18 +15,12 @@ class AddressController implements Controller
 
     public function response(): string
     {
-        // TODO
-        $addresses = [];
-        $allAddresses = $this->service->readAddresses();
-
-        foreach ($allAddresses as $key => $address) {
-            $addresses[] = [
-                'streetName' => $address->streetName,
-                'streetNumber' => $address->streetNumber
-            ];
-        }
+        $addresses = $this->service->readAddresses();
         $addresses = array_map(function ($a) {
-            return implode(" - ", (array) $a);
+            return implode(" - ", [
+                'streetName' => $a->streetName,
+                'streetNumber' => $a->streetNumber,
+            ]);
         }, $addresses);
         return implode("<br>", $addresses);
     }
