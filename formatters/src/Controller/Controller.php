@@ -2,5 +2,5 @@
 
 interface Controller
 {
-    public function response(): string;
+    public function response(string $separator, string $design): string;
 }
