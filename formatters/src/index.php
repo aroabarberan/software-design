@@ -7,6 +7,9 @@ use App\Exception;
 use App\Service;
 use App\Controller;
 use App\Model;
+use App\Util\Design;
+
+$design = new Design();
 
 // Declare services
 $languageService = new Service\LanguageService();
@@ -14,9 +17,9 @@ $countryService = new Service\CountryService();
 $addressService = new Service\AddressService();
 
 // Declare controllers
-$languageController = new Controller\LanguageController($languageService);
-$countryController = new Controller\CountryController($countryService);
-$addressController = new Controller\AddressController($addressService);
+$languageController = new Controller\LanguageController($languageService, $design);
+$countryController = new Controller\CountryController($countryService, $design);
+$addressController = new Controller\AddressController($addressService, $design);
 
 // Declare routes
 $router = new Router();

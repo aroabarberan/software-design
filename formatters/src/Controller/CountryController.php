@@ -1,16 +1,20 @@
 <?php namespace App\Controller;
 
 use App\Service\CountryService;
+use App\Util\Design;
 
 class CountryController implements Controller
 {
 
     /** @var CountryService */
     private $service;
+    /** @var Design */
+    private $design;
 
-    public function __construct(CountryService $service)
+    public function __construct(CountryService $service, Design $design)
     {
         $this->service = $service;
+        $this->design = $design;
     }
 
     public function response(string $separator = " ... ", string $design = "simbol"): string
@@ -19,46 +23,7 @@ class CountryController implements Controller
         $countries = array_map(function ($c) {
             return ['name' => $c->name, 'area' => $c->area];
         }, $countries);
-        return $this->getDesign($design, $countries, $separator);
-        
+        return $this->design->getDesign($design, $countries, $separator);
     }
 
-    private function getDesign(string $design, array $elements, string $separator)
-    {
-        switch ($design) {
-            case 'table':
-                return $this->getTable($elements);                                       
-            case 'simbol':
-                return $this->getSimbol($elements, $separator);
-            default:
-                return $this->getTable($elements);                
-        }
-    }
-
-    private function getTable(array $elements)
-    {
-        $table = "
-        <table border=0;>
-            <tr>
-                <td>Name</td>
-                <td>Area</td>
-            </tr>";
-            foreach ($elements as $element):
-                $table .= "<tr>
-                    <td> $element[name] </td>
-                    <td> $element[area] </td>
-                </tr>";
-            endforeach;
-        $table .= "</table>";
-        return $table;
-    }
-
-    private function getSimbol(array $elements, string $separator)
-    {
-        $elements = array_map(function ($c) use ($separator) {
-            return implode($separator, $c);
-        }, $elements);
-
-        return '- ' . implode("<br>- ", $elements);
-    }
 }
