@@ -1,29 +1,29 @@
 <?php namespace App\Controller;
 
 use App\Service\CountryService;
-use App\Util\Design;
+use App\Util\Formatter;
 
 class CountryController implements Controller
 {
 
     /** @var CountryService */
     private $service;
-    /** @var Design */
-    private $design;
+     /** @var Formatter */
+     private $formatter;
 
-    public function __construct(CountryService $service, Design $design)
+    public function __construct(CountryService $service, Formatter $formatter)
     {
         $this->service = $service;
-        $this->design = $design;
+        $this->formatter = $formatter;
     }
 
-    public function response(string $separator = " ... ", string $design = "simbol"): string
+    public function response(): string
     {
-        $countries = $this->service->readCountries();
+        $countries = $this->service->read();
         $countries = array_map(function ($c) {
             return ['name' => $c->name, 'area' => $c->area];
         }, $countries);
-        return $this->design->getDesign($design, $countries, $separator);
+        return $this->formatter->getFormat((array) $countries);
     }
 
 }

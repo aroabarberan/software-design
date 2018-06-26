@@ -1,29 +1,29 @@
 <?php namespace App\Controller;
 
 use App\Service\AddressService;
-use App\Util\Design;
+use App\Util\Formatter;
 
 class AddressController implements Controller
 {
 
     /** @var AddressService */
     private $service;
-    /** @var Design */
-    private $design;
+    /** @var Formatter */
+    private $formatter;
 
-    public function __construct(AddressService $service, Design $design)
+    public function __construct(AddressService $service, Formatter $formatter)
     {
         $this->service = $service;
-        $this->design = $design;
+        $this->formatter = $formatter;
     }
 
-    public function response(string $separator = " ... ", string $design = "simbol"): string
+    public function response(): string
     {
-        $addresses = $this->service->readAddresses();
+        $addresses = $this->service->read();
         $addresses = array_map(function ($a) {
             return ['streetName' => $a->streetName, 'streetNumber' => $a->streetNumber];
         }, $addresses);
-        return $this->design->getDesign($design, $addresses, $separator);
+        return $this->formatter->getFormat((array) $addresses);
     }
 
 }

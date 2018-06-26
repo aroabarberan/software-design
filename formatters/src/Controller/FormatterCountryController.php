@@ -20,13 +20,13 @@ class FormatterCountryController implements Controller
         $this->formatter = $formatter;
     }
 
-    public function response(string $separator = " ... "): string
+    public function response(): string
     {
-        $countries = $this->service->readCountries();
+        $countries = $this->service->read();
         $countries = array_map(function ($c) {
             return ['name' => $c->name, 'area' => $c->area];
         }, $countries);
-        return $this->formatter->getFormat((array) $countries, (string) $separator);
+        return $this->formatter->getFormat((array) $countries);
     }
 
 }

@@ -1,29 +1,29 @@
 <?php namespace App\Controller;
 
 use App\Service\LanguageService;
-use App\Util\Design;
+use App\Util\Formatter;
 
 class LanguageController implements Controller
 {
 
     /** @var LanguageService */
     private $service;
-    /** @var Design */
-    private $design;
+    /** @var Formatter */
+    private $formatter;
 
-    public function __construct(LanguageService $service, Design $design)
+    public function __construct(LanguageService $service, Formatter $formatter)
     {
         $this->service = $service;
-        $this->design = $design;
+        $this->formatter = $formatter;
     }
 
-    public function response(string $separator = " ... ", string $design = "simbol"): string
+    public function response(): string
     {
-        $languages = $this->service->readLanguages();
-        $languages = array_map(function ($l) use ($separator) {
+        $languages = $this->service->read();
+        $languages = array_map(function ($l) {
             return (array) $l;
         }, $languages);
-        return $this->design->getDesign($design, $languages, $separator);
+        return $this->formatter->getFormat((array) $languages);
     }
 
 }
