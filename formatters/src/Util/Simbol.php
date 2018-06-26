@@ -1,18 +1,22 @@
 <?php namespace App\Util;
 
-class Simbol extends Formatter
+class Simbol implements Formatter
 {
 
-    public function __construct()
+    private $separator;
+    private $simbol;
+
+    public function __construct(string $separator, string $simbol)
     {
+        $this->separator = $separator;
+        $this->simbol = $simbol;
     }
 
-    public function getFormat(array $elements, string $separator): string
+    public function getFormat(array $elements): string
     {
-        $elements = array_map(function ($e) use ($separator) {
-            return implode($separator, $e);
+        $elements = array_map(function ($e) {
+            return implode($this->separator, $e);
         }, $elements);
-
-        return '- ' . implode("<br>- ", $elements);
+        return $this->simbol . ' ' . implode("<br>" . $this->simbol . ' ', $elements);
     }
 }

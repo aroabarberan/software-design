@@ -1,26 +1,28 @@
 <?php namespace App\Util;
 
-class Table extends Formatter
-{   
+class Table implements Formatter
+{
 
-    public function __construct() {
-    }
+    public function getFormat(array $elements): string
+    {
+        $cont = 0;
+        $keys = array_keys($elements[0]);
 
-    public function getFormat(array $elements, string $separator = "") :string {
-        $table = "
-        <table border=0;>
-            <tr>
-                <td>Name</td>
-                <td>Area</td>
-            </tr>";
-        foreach ($elements as $key => $element):
+        $table = "<table border=0><tr>";
+        foreach ($keys as $key):
+            $table .= "<td>$key</td>";
+        endforeach;
+        $table .= "</tr>";
+        foreach ($elements as $element):
             $table .= "<tr>
-	                    <td> $element[$key] </td>
-	                    <td> $element[$key] </td>
-	                </tr>";
+	            <td>" . $element[$keys[$cont]] . "</td>
+	            <td>" . $element[$keys[$cont += 1]] . "</td>
+	        </tr>";
+            $cont = 0;
         endforeach;
         $table .= "</table>";
         return $table;
+
     }
 
 }

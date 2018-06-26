@@ -1,9 +1,8 @@
 <?php namespace App\Util;
 
-
-abstract class Formatter
+interface Formatter
 {
 
-    abstract public function getFormat(array $elements, string $separator);
+    public function getFormat(array $elements): string;
 
 }
