@@ -2,17 +2,13 @@
 
 use App\Model\Language;
 
-class LanguageService
+class LanguageService implements Service
 {
-
-    public function __construct()
-    {
-    }
 
     /**
      * @return Language[]
      */
-    public function readLanguages() : array
+    public function read() : array
     {
         return [
             new Language("English", 6500000),

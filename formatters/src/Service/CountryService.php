@@ -1,21 +1,15 @@
 <?php namespace App\Service;
 
 use App\Model\Country;
-use App\Model\Language;
 
-class CountryService
+class CountryService implements Service
 {
-
-    public function __construct()
-    {
-    }
-
+    
     /**
      * @return Country[]
      */
-    public function readCountries() : array
+    public function read() : array
     {
-        // TODO
         return [
             new Country("England", 6500000),
             new Country("Germany", 120000),
