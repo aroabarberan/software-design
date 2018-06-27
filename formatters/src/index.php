@@ -7,13 +7,17 @@ use App\Util\Design;
 use App\Util\Formatter;
 use App\Util\Table;
 use App\Util\Simbol;
+use App\Util\UpperCaseConvert;
+use App\Util\LowerCaseConvert;
 use App\Exception;
 use App\Service;
 use App\Controller;
 use App\Model;
 
-$simbol = new Simbol("--->", "-");
+$simbol = new Simbol(" ---> ", "-");
 $table = new Table();
+$upperCase = new UpperCaseConvert();
+$lowerCase = new LowerCaseConvert();
 
 // Declare services
 $languageService = new Service\LanguageService();
@@ -21,9 +25,9 @@ $countryService = new Service\CountryService();
 $addressService = new Service\AddressService();
 
 // Declare controllers
-$languageController = new Controller\LanguageController($languageService, $simbol);
-$countryController = new Controller\CountryController($countryService, $table);
-$addressController = new Controller\AddressController($addressService, $table);
+$languageController = new Controller\LanguageController($languageService, $simbol, $upperCase);
+$countryController = new Controller\CountryController($countryService, $table, $lowerCase);
+$addressController = new Controller\AddressController($addressService, $table, $upperCase);
 
 // Declare routes
 $router = new Router();
