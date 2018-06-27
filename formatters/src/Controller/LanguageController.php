@@ -1,17 +1,17 @@
 <?php namespace App\Controller;
 
-use App\Service\LanguageService;
+use App\Service\Service;
 use App\Util\Formatter;
 
 class LanguageController implements Controller
 {
 
-    /** @var LanguageService */
+    /** @var Service */
     private $service;
     /** @var Formatter */
     private $formatter;
 
-    public function __construct(LanguageService $service, Formatter $formatter)
+    public function __construct(Service $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;

@@ -1,17 +1,17 @@
 <?php namespace App\Controller;
 
-use App\Service\AddressService;
+use App\Service\Service;
 use App\Util\Formatter;
 
 class AddressController implements Controller
 {
 
-    /** @var AddressService */
+    /** @var Service */
     private $service;
     /** @var Formatter */
     private $formatter;
 
-    public function __construct(AddressService $service, Formatter $formatter)
+    public function __construct(Service $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;

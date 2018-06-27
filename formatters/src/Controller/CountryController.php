@@ -1,6 +1,6 @@
 <?php namespace App\Controller;
 
-use App\Service\CountryService;
+use App\Service\Service;
 use App\Util\Formatter;
 
 class CountryController implements Controller
@@ -11,7 +11,7 @@ class CountryController implements Controller
      /** @var Formatter */
      private $formatter;
 
-    public function __construct(CountryService $service, Formatter $formatter)
+    public function __construct(Service $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;
