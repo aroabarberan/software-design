@@ -6,7 +6,7 @@ use App\Util\Formatter;
 class CountryController implements Controller
 {
 
-    /** @var CountryService */
+    /** @var Service */
     private $service;
      /** @var Formatter */
      private $formatter;
