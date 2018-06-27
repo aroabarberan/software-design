@@ -24,14 +24,12 @@ $addressService = new Service\AddressService();
 $languageController = new Controller\LanguageController($languageService, $simbol);
 $countryController = new Controller\CountryController($countryService, $table);
 $addressController = new Controller\AddressController($addressService, $table);
-$formatterCountryController = new Controller\FormatterCountryController($countryService, $simbol);
 
 // Declare routes
 $router = new Router();
 $router->AddRoute($languageController, "/languages");
 $router->AddRoute($countryController, "/countries");
 $router->AddRoute($addressController, "/addresses");
-$router->AddRoute($formatterCountryController, "/formatters");
 
 // Show response
 try {
