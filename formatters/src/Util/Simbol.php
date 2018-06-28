@@ -1,6 +1,5 @@
 <?php namespace App\Util;
 
-
 class Simbol implements Formatter 
 {
     private $separator;
@@ -19,5 +18,4 @@ class Simbol implements Formatter
         }, $elements);
         return $this->simbol . ' ' . implode("<br>" . $this->simbol . ' ', $elements);
     }
-
 }

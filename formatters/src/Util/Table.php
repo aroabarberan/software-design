@@ -2,7 +2,6 @@
 
 class Table implements Formatter
 {
-
     public function getFormat(array $elements): string
     {
         $cont = 0;
@@ -24,5 +23,4 @@ class Table implements Formatter
         return $table;
 
     }
-
 }
