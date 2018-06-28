@@ -9,6 +9,8 @@ abstract class ConverterDecorator implements Formatter
         $this->formatter = $formatter;
     }
 
-    abstract function getFormat(array $elements): string;
+    public function getFormat(array $elements): string {
+        return $this->formatter->getFormat($elements);
+    }
 
 }

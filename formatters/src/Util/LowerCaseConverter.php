@@ -4,7 +4,6 @@ class LowerCaseConverter extends ConverterDecorator
 {
     public function getFormat(array $elements): string
     {
-        $this->formatter->getFormat($elements);
-        return strtolower($this->formatter);
+        return strtolower($this->formatter->getFormat($elements));
     }
 }

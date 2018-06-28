@@ -16,6 +16,7 @@ use App\Model;
 
 $simbol = new Simbol(" ---> ", "-");
 $table = new Table();
+
 $upperCase = new UpperCaseConverter($simbol);
 $lowerCase = new LowerCaseConverter($table);
 
