@@ -2,7 +2,6 @@
 
 use App\Service\Service;
 use App\Util\Formatter;
-use App\Util\Convert;
 
 class CountryController implements Controller
 {
@@ -11,21 +10,18 @@ class CountryController implements Controller
     private $service;
     /** @var Formatter */
     private $formatter;
-    /** @var Convert */
-    private $convert;
 
-    public function __construct(Service $service, Formatter $formatter, Convert $convert)
+    public function __construct(Service $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;
-        $this->convert = $convert;
     }
 
     public function response(): string
     {
         $countries = $this->service->read();
         $countries = array_map(function ($c) {
-            return ['name' => $this->convert->convertString($c->name), 'area' => $this->convert->convertString($c->area)];
+            return ['name' => $c->name, 'area' => $c->area];
         }, $countries);
         return $this->formatter->getFormat((array) $countries);
     }
