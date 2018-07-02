@@ -11,7 +11,7 @@ class AddressController implements Controller
     /** @var Formatter */
     private $formatter;
 
-    public function __construct(Service $service, Formatter $formatter)
+    public function __construct(AddressService $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;

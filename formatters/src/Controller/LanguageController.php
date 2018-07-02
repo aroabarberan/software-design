@@ -11,7 +11,7 @@ class LanguageController implements Controller
     /** @var Formatter */
     private $formatter;
 
-    public function __construct(Service $service, Formatter $formatter)
+    public function __construct(LanguageService $service, Formatter $formatter)
     {
         $this->service = $service;
         $this->formatter = $formatter;
