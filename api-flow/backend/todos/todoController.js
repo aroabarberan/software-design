@@ -39,7 +39,12 @@ const remove = id => {
   return res
 }
 
-const update = (id, newTodo) => service.updateTodo(id, newTodo)
+const update = (id, newTodo) => {
+  const res = {}
+  res.status = 200
+  res.results = service.updateTodo(id, newTodo)
+  return res
+}
 
 module.exports = {
   create, get, getAll, remove, update

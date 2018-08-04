@@ -19,6 +19,11 @@ router.post('/', (req, res) => {
   res.status(response.status).send(response)
 })
 
+router.put('/:id', (req, res) => {
+  const response = controller.update(req.params.id, req.body)
+  res.status(response.status).send(response)
+})
+
 router.delete('/:id', (req, res) => {
   const response = controller.remove(req.params.id)
   res.status(response.status).send(response)

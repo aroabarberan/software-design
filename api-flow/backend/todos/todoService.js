@@ -36,7 +36,8 @@ const removeTodo = id => {
 
 const updateTodo = (id, newTodo) => {
   checkIDAndThrow(id)
-  todos[id] = { ...todo, ...newTodo }
+  todos[id] = { ...todos[id], ...newTodo }
+  return todos[id]
 }
 
 const readTodo = id => {
